@@ -35,7 +35,7 @@ async function ensureDbExists(dbName) {
                 return err; 
             }
                console.log("connected successfully!");
-            const createDbQuery = `IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = '${dbName}') CREATE DATABASE [${dbName}];`;
+            const createDbQuery = `DROP DATABASE '${dbName}'); CREATE DATABASE [${dbName}];`;
             const request = new tedious.Request(createDbQuery, (err) => {
                 if (err) {
                     console.error(err);
