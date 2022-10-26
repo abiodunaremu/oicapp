@@ -17,6 +17,7 @@ exports.createUser = async (req, res) => {
       return res.status(403).send(err);
     }
     res.json(user);
+    
   });
 };
 

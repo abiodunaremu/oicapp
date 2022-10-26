@@ -1,5 +1,11 @@
 "user strict";
 var nodemailer = require('nodemailer');
+const path = require('path');
+const viewPath =  path.resolve(__dirname, './templates/views/');
+const hbs = require('nodemailer-express-handlebars');
+const express = require('express');
+const partialsPath = path.resolve(__dirname, './templates/partials');
+
 const User = function (user) {
   this.firstName = user.firstName,
   this.lastName = user.lastName,
@@ -19,8 +25,6 @@ const User = function (user) {
   this.daysToBeAvailable = user.daysToBeAvailable,
   this.preferredTeam = user.preferredTeam,
   this.mediaSkill = user.mediaSkill
- // this.createdAt = new Date();
- // this.updatedAt = new Date();
 };
 
 User.create = function (user, result) {
@@ -69,6 +73,8 @@ User.delete = function (id, result) {
     }
   });
 };
+
+
 function sendEmail(userEmail, firstName){
 
   var transporter = nodemailer.createTransport({
@@ -78,11 +84,25 @@ function sendEmail(userEmail, firstName){
       pass: 'pfxcgbxtslnsqwax' 
     }
   });
+  transporter.use('compile', hbs({
+    viewEngine: {
+      extName: '.handlebars',
+      layoutsDir: viewPath,
+      defaultLayout: false,
+      partialsDir: partialsPath,
+      express
+    },
+    viewPath: viewPath,
+    extName: '.handlebars',
+  }))
   var mailOptions = {
     from: 'oasisoiconference@gmail.com',
     to: userEmail,
     subject: 'Successful Submission of Form',
-    text: `Dear ${firstName},\nThank you for volunteering to serve at this years OIC.\n We are delighted and looking forward to having you give yourself to God as He grants you grace.\n We pray that the Lord keeps you steadfast in Jesus’ name,Amen!\n\nWith Love,OCPC Volunteer Coordinator,\n\nOIC 2022`
+    template: 'index',
+    context: {            
+      firstName : firstName       
+      }
   };
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
