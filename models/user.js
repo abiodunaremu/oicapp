@@ -96,7 +96,7 @@ function sendEmail(userEmail, firstName){
     extName: '.handlebars',
   }))
   var mailOptions = {
-    from: 'oasisoiconference@gmail.com',
+    from: 'RCCG, The Oasis',
     to: userEmail,
     subject: 'Successful Submission of Form',
     template: 'index',
