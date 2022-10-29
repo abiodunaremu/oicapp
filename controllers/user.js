@@ -71,11 +71,12 @@ exports.createAltarCalls = async (req, res) => {
       email: "email is required" + req.body.email
     });
   }
-  const altarCall = new AltarCall(req.body);
-  altarCall.create(altarCall, function (err, altarCall) {
+  const altarCalls = new AltarCall(req.body);
+
+  altarCalls.create(altarCalls, function (err, altarCalls) {
     if (err) {
       return res.status(403).send(err);
     }
-    res.json(altarCall);
+    res.json(altarCalls);
   });
 };
