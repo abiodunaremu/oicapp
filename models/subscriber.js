@@ -38,7 +38,7 @@ Subscriber.delete = function (id, result) {
   });
 };
 
-Subscriber.subscribe = function (subscriber, result) {
+Subscriber.create = function (subscriber, result) {
   connection.query("INSERT INTO subscribers set ?", subscriber, function (err, res) {
     if (err) {
       result(err, null);
