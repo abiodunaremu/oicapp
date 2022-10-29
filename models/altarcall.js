@@ -1,4 +1,4 @@
-"AltarCall strict";
+"altarCall strict";
 
 const AltarCall = function (altarCall) {
   this.firstName = altarCall.firstName,
