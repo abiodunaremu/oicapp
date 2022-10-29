@@ -30,7 +30,11 @@ const User = function (user) {
 User.create = function (user, result) {
   connection.query("INSERT INTO users set ?", user, function (err, res) {
     if (err) {
-      result(err, null);
+      if(err.sqlMessage.includes("Duplicate") && err.sqlMessage.includes("email")){
+        result(null, "error: Duplicate email");  
+      } else {
+        result(err, null);
+      }
     } else {
       result(null, "successful: "+res.insertId);      
       sendEmail(user.email, user.firstName);
