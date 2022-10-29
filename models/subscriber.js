@@ -1,6 +1,6 @@
 "subscribe strict";
 const Subscriber = function (subscriber) {
-  this.email = subscriber.subscriber
+  this.email = subscriber.email
 };
 
 Subscriber.read = function (result) {
