@@ -65,7 +65,7 @@ exports.createSubscribers = async (req, res) => {
   });
 };
 
-exports.createaltarCalls = async (req, res) => {
+exports.createAltarCalls = async (req, res) => {
   if (!req.body.email) {
     return res.status(422).json({
       email: "email is required" + req.body.email
