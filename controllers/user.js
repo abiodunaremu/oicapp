@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const Subscriber = require("../models/subscriber");
-const altarCall = require("../models/altarcall");
+const AltarCall = require("../models/altarcall");
 
 exports.createUser = async (req, res) => {
   if (!req.body.firstName || !req.body.lastName || !req.body.email) {
@@ -57,7 +57,7 @@ exports.createSubscribers = async (req, res) => {
     });
   }
   const subscriber = new Subscriber(req.body);
-  Subscriber.create(subscriber, function (err, subscriber) {
+  subscriber.create(subscriber, function (err, subscriber) {
     if (err) {
       return res.status(403).send(err);
     }
@@ -71,7 +71,7 @@ exports.createaltarCalls = async (req, res) => {
       email: "email is required" + req.body.email
     });
   }
-  const altarCall = new altarCall(req.body);
+  const altarCall = new AltarCall(req.body);
   altarCall.create(altarCall, function (err, altarCall) {
     if (err) {
       return res.status(403).send(err);

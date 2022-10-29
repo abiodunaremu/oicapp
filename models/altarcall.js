@@ -1,6 +1,6 @@
 "altarCall strict";
 
-const altarCall = function (altarCall) {
+const AltarCall = function (altarCall) {
   this.firstName = altarCall.firstName,
   this.lastName = altarCall.lastName,
   this.email = altarCall.email,
@@ -10,7 +10,7 @@ const altarCall = function (altarCall) {
   this.prayerRequest = altarCall.prayerRequest
 };
 
-altarCall.create = function (altarCall, result) {
+AltarCall.create = function (altarCall, result) {
   connection.query("INSERT INTO altarCall set ?", altarCall, function (err, res) {
     if (err) {
       result(err, null);
@@ -20,7 +20,7 @@ altarCall.create = function (altarCall, result) {
   });
 };
 
-altarCall.read = function (result) {
+AltarCall.read = function (result) {
   connection.query("SELECT * FROM altarCall", (err, res) => {
     if (err) {
       result(err, null);
@@ -30,7 +30,7 @@ altarCall.read = function (result) {
   });
 };
 
-altarCall.update = function (id, altarCall, result) {
+AltarCall.update = function (id, altarCall, result) {
   connection.query("UPDATE altarCall SET ? WHERE _id = ?", [altarCall, id], function (
     err,
     res
@@ -43,7 +43,7 @@ altarCall.update = function (id, altarCall, result) {
   });
 };
 
-altarCall.delete = function (id, result) {
+AltarCall.delete = function (id, result) {
   connection.query("DELETE FROM altarCall WHERE _id = ?", [id], function (
     err,
     res
@@ -56,4 +56,4 @@ altarCall.delete = function (id, result) {
   });
 };
 
-module.exports = altarCall;
+module.exports = AltarCall;
