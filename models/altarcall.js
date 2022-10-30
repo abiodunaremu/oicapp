@@ -1,4 +1,3 @@
-"altarCall strict";
 
 const AltarCall = function (altarCall) {
   this.firstName = altarCall.firstName,
@@ -19,7 +18,7 @@ AltarCall.createAltarCall = function (altarCall, result) {
     }
   });
 };
-
+/**
 AltarCall.read = function (result) {
   connection.query("SELECT * FROM altarCalls", (err, res) => {
     if (err) {
@@ -55,5 +54,5 @@ AltarCall.delete = function (id, result) {
     }
   });
 };
-
+**/
 module.exports = AltarCall;
