@@ -10,7 +10,7 @@ const AltarCall = function (altarCall) {
   this.prayerRequest = altarCall.prayerRequest
 };
 
-AltarCall.create = function (altarCall, result) {
+AltarCall.createAltarCall = function (altarCall, result) {
   connection.query("INSERT INTO altarCalls set ?", altarCall, function (err, res) {
     if (err) {
       result(err, null);

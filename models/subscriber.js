@@ -1,4 +1,5 @@
 "subscribe strict";
+
 const Subscriber = function (subscriber) {
   this.email = subscriber.email
 };
@@ -38,7 +39,7 @@ Subscriber.delete = function (id, result) {
   });
 };
 
-Subscriber.create = function (subscribe, result) {
+Subscriber.createSubscriber = function (subscribe, result) {
   connection.query("INSERT INTO subscribers set ?", subscribe, function (err, res) {
     if (err) {
       result(err, null);
