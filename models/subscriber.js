@@ -6,12 +6,8 @@ const Subscriber = function (subscriber) {
 
 Subscriber.read = function (result) {
   connection.query("SELECT * FROM subscribers", (err, res) => {
-    if (err) {      
-      if(err.sqlMessage.includes("Duplicate") && err.sqlMessage.includes("email")){
-        result(null, "error: Duplicate email");  
-      } else {
-        result(err, null);
-      }
+    if (err) {
+      result(err, null);
     } else {
       result(null, res);
     }
@@ -45,8 +41,12 @@ Subscriber.delete = function (id, result) {
 
 Subscriber.createSubscriber = function (subscribe, result) {
   connection.query("INSERT INTO subscribers set ?", subscribe, function (err, res) {
-    if (err) {
-      result(err, null);
+    if (err) {      
+      if(err.sqlMessage.includes("Duplicate") && err.sqlMessage.includes("email")){
+        result(null, "Error: Duplicate email");  
+      } else {
+        result(err, null);
+      }
     } else {
       result(null, "successful: " + res.insertId);      
     }
