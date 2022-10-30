@@ -57,7 +57,7 @@ exports.createSubscribers = async (req, res) => {
     });
   }
   const subscriber = new Subscriber(req.body);
-  subscriber.createSubscriber(subscriber, function (err, subscriber) {
+  Subscriber.createSubscriber(subscriber, function (err, subscriber) {
     if (err) {
       return res.status(403).send(err);
     }
@@ -73,7 +73,7 @@ exports.createAltarCalls = async (req, res) => {
   }
   const altarCalls = new AltarCall(req.body);
 
-  altarCalls.createAltarCall(altarCalls, function (err, altarCalls) {
+  AltarCall.create(altarCalls, function (err, altarCalls) {
     if (err) {
       return res.status(403).send(err);
     }

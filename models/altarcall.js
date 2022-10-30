@@ -1,3 +1,4 @@
+"AltarCall strict";
 
 const AltarCall = function (altarCall) {
   this.firstName = altarCall.firstName,
@@ -9,7 +10,7 @@ const AltarCall = function (altarCall) {
   this.prayerRequest = altarCall.prayerRequest
 };
 
-AltarCall.createAltarCall = function (altarCall, result) {
+AltarCall.create = function (altarCall, result) {
   connection.query("INSERT INTO altarCalls set ?", altarCall, function (err, res) {
     if (err) {
       result(err, null);
@@ -18,7 +19,7 @@ AltarCall.createAltarCall = function (altarCall, result) {
     }
   });
 };
-/**
+
 AltarCall.read = function (result) {
   connection.query("SELECT * FROM altarCalls", (err, res) => {
     if (err) {
@@ -54,5 +55,5 @@ AltarCall.delete = function (id, result) {
     }
   });
 };
-**/
+
 module.exports = AltarCall;
