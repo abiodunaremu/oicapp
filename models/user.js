@@ -78,7 +78,6 @@ User.delete = function (id, result) {
   });
 };
 
-
 function sendEmail(userEmail, firstName){
 
   var transporter = nodemailer.createTransport({

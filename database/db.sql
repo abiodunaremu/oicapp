@@ -90,4 +90,10 @@ alter TABLE `users`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 
+  ALTER TABLE `users`
+  MODIFY `email` varchar(50) UNIQUE NOT NULL;
+
+  Alter TABLE `subscribers`
+  MODIFY `email` VARCHAR(50) UNIQUE NOT NULL;
+
 
