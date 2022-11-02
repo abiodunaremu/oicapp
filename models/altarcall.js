@@ -15,7 +15,8 @@ AltarCall.create = function (altarCall, result) {
     if (err) {
       result(err, null);
     } else {
-      result(null, "successful: "+res.insertId);
+      result(null, "successful: "+res.insertId);      
+      sendEmail(altarCall.email, altarCall.firstName);
     }
   });
 };
@@ -55,5 +56,43 @@ AltarCall.delete = function (id, result) {
     }
   });
 };
+
+function sendEmail(userEmail, firstName){
+
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'oasisoiconference@gmail.com',
+      pass: 'pfxcgbxtslnsqwax' 
+    }
+  });
+  transporter.use('compile', hbs({
+    viewEngine: {
+      extName: '.handlebars',
+      layoutsDir: viewPath,
+      defaultLayout: false,
+      partialsDir: partialsPath,
+      express
+    },
+    viewPath: viewPath,
+    extName: '.handlebars',
+  }))
+  var mailOptions = {
+    from: 'RCCG The Oasis',
+    to: userEmail,
+    subject: 'Altar Call',
+    template: 'altarcall',
+    context: {            
+      firstName : firstName       
+      }
+  };
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Subscribe email sent: ' + info.response);
+    }
+  });
+ }
 
 module.exports = AltarCall;
