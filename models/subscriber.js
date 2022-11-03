@@ -1,4 +1,10 @@
 "subscribe strict";
+var nodemailer = require('nodemailer');
+const path = require('path');
+const viewPath =  path.resolve(__dirname, './templates/views/');
+const hbs = require('nodemailer-express-handlebars');
+const express = require('express');
+const partialsPath = path.resolve(__dirname, './templates/partials');
 
 const Subscriber = function (subscriber) {
   this.email = subscriber.email
