@@ -81,7 +81,7 @@ function sendEmail(userEmail){
     extName: '.handlebars',
   }))
   var mailOptions = {
-    from: 'RCCG The Oasis',
+    sender: 'RCCG The Oasis',
     to: userEmail,
     subject: 'Welcome to The Oasis',
     template: 'subscribe',
